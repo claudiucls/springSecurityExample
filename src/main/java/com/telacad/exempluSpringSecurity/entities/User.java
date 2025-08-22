@@ -1,5 +1,6 @@
 package com.telacad.exempluSpringSecurity.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,10 +20,12 @@ public class User {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "coordinator")
+    @JsonManagedReference
     private List<Project> projects;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Authority> authorities;
 
     public Integer getId() {
@@ -51,5 +54,21 @@ public class User {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }
