@@ -3,6 +3,7 @@ package com.telacad.exempluSpringSecurity.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +18,12 @@ public class User {
 
     @Column(name = "created_at")
     private LocalDate createdAt;
+
+    @OneToMany
+    private List<Project> projects;
+
+    @OneToMany
+    private List<Authority> authorities;
 
     public Integer getId() {
         return id;
