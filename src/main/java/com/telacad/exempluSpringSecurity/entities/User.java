@@ -20,11 +20,11 @@ public class User {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "coordinator")
+    @OneToMany(mappedBy = "coordinator",fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Project> projects;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Authority> authorities;
 

@@ -4,6 +4,7 @@ import com.telacad.exempluSpringSecurity.entities.Project;
 import com.telacad.exempluSpringSecurity.entities.User;
 import com.telacad.exempluSpringSecurity.services.ProjectService;
 import com.telacad.exempluSpringSecurity.services.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,9 @@ public class MainController {
         this.userService = userService;
     }
 
-    @GetMapping("/get/{username}")
-    public List<Project> getProjectsByCoordinator(@PathVariable String username){
-        return projectService.getProjectsByCoordinator(userService.getUserByUsername(username));
+    @GetMapping()
+    public List<Project> getProjectsByCoordinator(Authentication authentication){
+        final User userByUsername = userService.getUserByUsername(authentication.getName());
+        return projectService.getProjectsByCoordinator(userByUsername);
     }
 }
