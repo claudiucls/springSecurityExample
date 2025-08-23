@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JpaUserDetailsService implements UserDetailsService { // This class is correctly used by MyCustomAuthentificationProvider
+public class JpaUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
