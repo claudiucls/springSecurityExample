@@ -1,5 +1,6 @@
 package com.telacad.exempluSpringSecurity.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "coordinator")
+    @JsonBackReference
     private User coordinator;
 
     public Integer getId() {

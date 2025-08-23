@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Welcome, <span th:text="${username}">User</span>!</h2>
+        <p>
+            <a href="/logout" class="btn btn-primary">Sign out</a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <caption>These are the projects you're coordinating</caption>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${projects.empty}">
+                    <td colspan="1">No projects found.</td>
+                </tr>
+                <tr th:each="project : ${projects}">
+                    <td th:text="${project.name}">Project Name</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
